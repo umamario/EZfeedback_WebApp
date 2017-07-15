@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 body{
     background-size: cover;
     -moz-background-size: cover;
@@ -11,10 +13,6 @@ body{
     margin-top:-16px;
     margin-bottom:22px;
 }
-
-
-/*Formulario*/
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .login-page {
     width: 360px;
