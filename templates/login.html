@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+            <div class="login-page">
+                <div class="form">
+                    <div class="login_imagen">
+                        {% load static %}
+                        <img src="{% static 'logo.png' %}"/>
+                    </div>
+                    <form method="POST" id="login-form"> {% csrf_token %}
+                        {% if login_incorrect %}
+                            <p class="message">The user/password were not found in our system</p>
+                        {% endif %}
+                        <input type="text" name="user" class="caja"/>
+                        <input type="password" class="caja" name ="contrasenia" "/>
+                        <button id ="login_autenticar" class="loginbutton"> Enter </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

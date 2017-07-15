@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+
+
+{% block content %}
+<div align="center">
+    <form method="POST" class="post-form"> {% csrf_token %}
+        {% if form.errors %}
+            <ul class="user-msg error">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>
+                      {% if field != '__all__' %}
+                        <strong>{{ field.label }}:</strong>
+                      {% endif %}
+                      {{ error }}
+                    </li>
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <table>
+            <tr>
+                <td><div align="center">Sell Currency</div></td>
+                <td><div align="center">Rate</div></td>
+                <td><div align="center">Buy Currency</div></td>
+            </tr>
+            <tr>
+                <td><div align="center">{{form.sell_currency}}</div></td>
+                <td><div align="center">{{form.client_rate}}</div></td>
+                <td><div align="center">{{form.buy_currency}}</div></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><div align="center">Sell Amount</div></td>
+                <td></td>
+                <td><div align="center">Buy Amount</div></td>
+            </tr>
+            <tr>
+                <td><div align="center">{{form.sell_amount}}</div></td>
+                <td></td>
+                <td><div align="center">{{form.buy_amount}}</div></td>
+
+
+            </tr>
+            <tr><td></td><td><div align="center">Value Date</div></td><td></td></tr>
+            <tr><td></td><td><div align="center">{{ form.expected_clearing_date }}</div></td><td></td></tr>
+        </table>
+         <p></p>
+        <button type="submit" class="save btn btn-default">Create</button>
+    </form>
+</div>
+
+{% endblock content %}
