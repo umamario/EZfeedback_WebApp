@@ -27,7 +27,8 @@ urlpatterns = [
     url(r'^logout$', views.logout_view, name='logout_view'),
     url(r'^register$', views.register_view, name='register_view'),
     url(r'^view_survey/(?P<survey_id>[0-9]+)/$', views.view_survey, name='view_survey'),
-    url(r'^response/(?P<id_user>[0-9]+)/(?P<id_question>[0-9]+)/(?P<answer>.+)/$', views.register_response, name='register_response'),
-    url(r'^api/', include('fake_bos.api.urls')),
+    url(r'^response/.*$', views.register_response, name='register_response'),
+    #url(r'^response/(?P<id_user>[0-9]+)/(?P<id_question>[0-9]+)/(?P<answer>.+)/$', views.register_response, name='register_response'),
+    #url(r'^api/', include('fake_bos.api.urls')),
 
 ]
