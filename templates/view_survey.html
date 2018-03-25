@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block content %}
+        <table width=100% height=100%>
+        <tr>
+            <td valign="top" width=50%>
+                <h2><a href="/">Responses Submitted</a></h2>
+                    <table align="center" class="table table-striped">
+                        <thead>
+
+                            <td><div align="center">Question ID</div>
+
+                            <td><div align="center">User</div>
+
+                            <td><div align="center">Response</div>
+
+                            <td><div align="center">Response date</div>
+
+                        </thead>
+                        <tbody>
+                            {% for response in responses %}
+                                <tr>
+
+                                    <td><div align="center">{{response.question.id}}</div></td>
+
+                                    <td><div align="center">{{response.user}}</div></td>
+
+                                    <td><div align="center">{{response.response_text}} </div><br></td>
+
+                                    <td><div align="center">{{response.response_date}}</div></td>
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </td>
+
+            <td valign="top" width=50%>
+                <h2><a href="/">Questions on this survey</a></h2>
+                    <table align="center" class="table table-striped">
+                        <thead>
+
+                            <td><div align="center">Question ID</div>
+
+                            <td><div align="center">Question</div>
+
+                            <td><div align="center">Point reward</div>
+
+                            <td><div align="center">Choices</div>
+
+                        </thead>
+                        <tbody>
+                            {% for question in questions %}
+                                <tr>
+
+                                    <td><div align="center">{{question.id}}</div></td>
+
+                                    <td><div align="center">{{question.question_text}}</div></td>
+
+                                    <td><div align="center">{{question.point_reward}}</div></td>
+
+                                    <td>
+                                        {% for choice in question.get_question_choices %}
+                                            <div align="center">{{choice}} </div><br>
+                                        {% endfor %}
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </td>
+        </tr>
+    </table>
+{% endblock content %}

@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from fake_bos import views
 
@@ -25,10 +25,9 @@ urlpatterns = [
     url(r'^index$', views.index, name='index'),
     url(r'^login$', views.login_view, name='login_view'),
     url(r'^logout$', views.logout_view, name='logout_view'),
-    url(r'^delete/(?P<identifier>[0-9]+)/$', views.delete, name='delete'),
-    url(r'^new_trade$', views.new_trade, name='new_trade'),
-    url(r'^ajax/autocomplete_buy_currency/$', views.autocomplete_buy_currency, name='autocomplete_buy_currency'),
-    url(r'^ajax/autocomplete_sell_currency/$', views.autocomplete_sell_currency, name='autocomplete_sell_currency'),
-    url(r'^ajax/get_rate/$', views.get_rate, name='autocomplete_sell_currency'),
+    url(r'^register$', views.register_view, name='register_view'),
+    url(r'^view_survey/(?P<survey_id>[0-9]+)/$', views.view_survey, name='view_survey'),
+    url(r'^response/(?P<id_user>[0-9]+)/(?P<id_question>[0-9]+)/(?P<answer>.+)/$', views.register_response, name='register_response'),
+    url(r'^api/', include('fake_bos.api.urls')),
 
 ]

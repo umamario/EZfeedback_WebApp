@@ -2,48 +2,99 @@
 {% load humanize %}
 
 
-
-
 {% block content %}
-    <h1><a href="/">Trades</a></h1>
-        <table align="center" class="table table-striped">
-            <br>
-            <br>
-            <a  href="{% url 'new_trade' %}"><button type="button" style="margin-top: 2em; margin:auto; display:block;" class="btn btn-default btn-lg" >New trade</button></a>
-            <thead>
-                <br><br>
-                <td><div align="center">Reference</div>
+    {% if not isCompany %}
+        <table width=100% height=100%>
+        <tr>
+            <td valign="top" width=50%>
+                <h2><a href="/">Responses Submitted</a></h2>
+                    <table align="center" class="table table-striped">
+                        <thead>
 
-                <td><div align="center">Sell Amount</div>
+                            <td><div align="center">Company</div>
 
-                <td><div align="center">Buy Amount</div>
+                            <td><div align="center">Question</div>
 
-                <td><div align="center">Rate</div>
+                            <td><div align="center">Reward</div>
 
-                <td><div align="center">Creation date</div>
+                            <td><div align="center">Response date</div>
+                        </thead>
+                        <tbody>
+                            {% for response in responses %}
+                                <tr>
 
-                <td><div align="center">Options</div>
-            </thead>
-            <tbody>
-                {% for trade in trades %}
-                    <tr>
+                                    <td><div align="center">{{response.get_company}}</div></td>
 
-                        <td><div align="center">{{trade.deal_id}}</div></td>
+                                    <td><div align="center">{{response.question.question_text}}</div></td>
 
-                        <td><div align="center">{{trade.sell_amount|intcomma}} {{trade.sell_currency.symbol}}</div></td>
+                                    <td><div align="center">{{response.point_rewarded |intcomma}} </div><br></td>
 
-                        <td><div align="center">{{trade.buy_amount|intcomma}} {{trade.buy_currency.symbol}}</div><br></td>
+                                    <td><div align="center">{{response.response_date}}</div></td>
 
-                        <td><div align="center">{{trade.rate|intcomma}}</div></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </td>
 
-                        <td><div align="center">{{trade.created_time}}</div></td>
+            <td width=50%>
+                <h2><a>Total point accumulated</a></h2>
+                <h3><a>{{ user_acumulated }}</a></h3>
+            </td>
+        </tr>
+    </table>
+    {% else %}
+        <table width=100% height=100%>
+        <tr>
+            <td valign="top" width=50%>
+                <h2><a href="/">Responses Submitted</a></h2>
+                    <table align="center" class="table table-striped">
+                        <thead>
 
-                        <td>
-                            <a  href="{% url 'delete' trade.id%}"><button type="button" style="margin-top: 1em;" class="btn btn-default btn-lg" >Delete</button></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+                            <td><div align="center">Survey ID</div>
 
-        </table>
+                            <td><div align="center">Survey Title</div>
+
+                            <td><div align="center">Users surveyed</div>
+
+                            <td><div align="center">Points rewarded</div>
+
+                            <td><div align="center">Profile</div>
+
+                            <td><div align="center">Options</div>
+                        </thead>
+                        <tbody>
+                            {% for survey in surveys %}
+                                <tr>
+
+                                    <td><div align="center">{{survey.id}}</div></td>
+
+                                    <td><div align="center">{{survey.title}}</div></td>
+
+                                    <td><div align="center">{{survey.get_number_responses |intcomma}} </div><br></td>
+
+                                    <td><div align="center">{{survey.get_points_rewarded}}</div></td>
+
+                                    <td>
+                                        {% for profile in survey.get_profiles %}
+                                            <div align="center">{{profile}}</div><br>
+                                        {% endfor %}
+                                    </td>
+
+                                    <td>
+                                        <a  href="{% url 'view_survey' survey.id%}"><button type="button" style="margin-top: 1em;" class="btn btn-default btn-lg" >View</button></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </td>
+
+            <td width=50%>
+                <h2><a>Create New Survey</a></h2>
+
+            </td>
+        </tr>
+    </table>
+    {% endif %}
 {% endblock content %}

@@ -12,17 +12,17 @@
                 <div class="form">
                     <div class="login_imagen">
                         {% load static %}
-                        <img src="{% static 'logo.png' %}"/>
+                        <img src="{% static 'logo2.png' %}"/>
                     </div>
                     <form method="POST" id="login-form"> {% csrf_token %}
                         {% if login_incorrect %}
                             <p class="message">The user/password were not found in our system</p>
                         {% endif %}
                         <input type="text" name="user" class="caja"/>
-                        <input type="password" class="caja" name ="contrasenia" "/>
+                        <input type="password" class="caja" name ="contrasenia" />
                         <button id ="login_autenticar" class="loginbutton"> Enter </button>
-
                     </form>
+                        <button id ="login_register" class="loginbutton" onclick="window.location.href='/register'" > Register </button>
                 </div>
             </div>
         </div>

@@ -29,5 +29,5 @@ h3 {
 }
 table {
     border-spacing: 10px;
-    border-collapse: separate;
+    border-collapse: collapse;
 }

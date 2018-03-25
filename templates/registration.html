@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+
+
+{% block content %}
+<div align="center">
+    <form method="POST" class="post-form"> {% csrf_token %}
+        {% if form.errors %}
+            <ul class="user-msg error">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>
+                      {% if field != '__all__' %}
+                        <strong>{{ field.label }}:</strong>
+                      {% endif %}
+                      {{ error }}
+                    </li>
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <table>
+            <tr>
+                <td><div align="center">Gender</div></td>
+                <td><div align="center">Name</div></td>
+                <td><div align="center">Email</div></td>
+            </tr>
+            <tr>
+                <td><div align="center">{{form.gender}}</div></td>
+                <td><div align="center">{{form.name}}</div></td>
+                <td><div align="center">{{form.email}}</div></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><div align="center">Ethnicity</div></td>
+                <td><div align="center">Level of study</div></td>
+                <td><div align="center">Current status</div></td>
+            </tr>
+            <tr>
+                <td><div align="center">{{form.ethnicity}}</div></td>
+                <td><div align="center">{{form.level_study}}</div></td>
+                <td><div align="center">{{form.status}}</div></td>
+
+
+            </tr>
+            <tr><td></td><td><div align="center">Birth date</div></td><td></td></tr>
+            <tr><td></td><td><div align="center">{{ form.birth_date }}</div></td><td></td></tr>
+        </table>
+         <p></p>
+        <button type="submit" class="save btn btn-default">Create</button>
+    </form>
+</div>
+
+{% endblock content %}
