@@ -1,7 +1,7 @@
-Developers Test
+HackGSU 2018
 ==========
 
-This is the solution for the developer test.
+This is code of the web APP used in the project EZFeedback.
 
 Installation
 --------------------
