@@ -36,17 +36,6 @@ def view_survey(request, survey_id):
     return render(request, 'view_survey.html', {'responses': responses,
                                                 'questions': questions})
 
-
-# def register_response(request, id_user, id_question, answer):
-#     try:
-#         print (id_user, id_question, answer)
-#         response = Response.objects.create(user=User.objects.get(pk=id_user), response_text=answer,
-#                                            question=Question.objects.get(pk=id_question))
-#     except:
-#         import traceback
-#         return render(request, 'error.html', {'error_trace': traceback.format_exc()})
-#     return render(request, 'confirmation.html')
-
 def register_response(request):
     return render(request, 'confirmation.html')
 
