@@ -19,19 +19,6 @@ class RegistrationForm(forms.ModelForm):
     name = forms.CharField(required=True, label='Name')
     email = forms.EmailField(required=True, label='Email')
 
-
-    # def clean_sell_currency(self):
-    #     sc = self.cleaned_data['sell_currency']
-    #     if not Currency.objects.filter(symbol=sc).exists():
-    #         raise ValidationError("The currency {} has not been created yet in our system".format(sc))
-    #     return sc
-    #
-    # def clean_buy_currency(self):
-    #     bc = self.cleaned_data['buy_currency']
-    #     if not Currency.objects.filter(symbol=bc).exists():
-    #         raise ValidationError("The currency {} has not been created yet in our system".format(bc))
-    #     return bc
-
     class Meta:
         model = Profile
         fields = (
